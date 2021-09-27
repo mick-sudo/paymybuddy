@@ -1,11 +1,14 @@
 package com.mick.paymybuddy;
 
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.mick.paymybuddy.dao.RelationDao;
 import com.mick.paymybuddy.dao.UserDao;
+import com.mick.paymybuddy.model.User;
 
 @SpringBootApplication
 public class BuddyApplication {
@@ -21,6 +24,10 @@ public class BuddyApplication {
 		
 		RelationDao relationDao = context.getBean(RelationDao.class);
 		System.out.println(relationDao.findAll().get(0).getBuddy().getFirstname());
+		
+		//test conection entre user et bankaccount
+		List<User> users = userDao.findAll();
+		System.out.println(users.get(0).getBankAccounts().get(0).getIban());
 		
 		
 	}

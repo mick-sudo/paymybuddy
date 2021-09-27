@@ -1,7 +1,8 @@
 package com.mick.paymybuddy.model;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -45,18 +46,16 @@ public class User {
 
 	@Column(name = "createDate")
 	private Date createDate;
-	
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<BankAccount> bankAccounts;
+	private List<BankAccount> bankAccounts;
 
-    @OneToMany(mappedBy = "owner")
-    private List<Relation> relations;
+	@OneToMany(mappedBy = "owner")
+	private List<Relation> relations;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
-
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Collection<Role> roles;
 
 	public Integer getId() {
 		return id;
@@ -114,8 +113,6 @@ public class User {
 		this.createDate = createDate;
 	}
 
-	
-	
 	public List<BankAccount> getBankAccounts() {
 		return bankAccounts;
 	}
@@ -139,7 +136,7 @@ public class User {
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
-
+	
 	public User() {
 		super();
 	}
@@ -156,5 +153,15 @@ public class User {
 		this.createDate = createDate;
 	}
 
+	public User(String firstname, String lastname, String email, String password, BigDecimal balance, Date createDate,
+			List<Role> roles) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
+		this.balance = balance;
+		this.createDate = createDate;
+		this.roles = roles;
+	}
 
 }
