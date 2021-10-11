@@ -19,7 +19,7 @@ public class BuddyApplication {
 		
 		// Test la connexion JPA
 		
-		UserDao userDao = context.getBean(UserDao.class);
+		/*UserDao userDao = context.getBean(UserDao.class);
 		System.out.println(userDao.findAll().get(0).getFirstname());
 		
 		RelationDao relationDao = context.getBean(RelationDao.class);
@@ -28,7 +28,7 @@ public class BuddyApplication {
 		//test conection entre user et bankaccount
 		List<User> users = userDao.findAll();
 		System.out.println(users.get(0).getBankAccounts().get(0).getIban());
-		
+		*/
 		
 	}
 
