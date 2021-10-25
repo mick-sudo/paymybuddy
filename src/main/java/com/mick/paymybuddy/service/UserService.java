@@ -14,7 +14,7 @@ public interface UserService extends UserDetailsService {
 
 	User save(UserRegistrationDto userRegistrationDto);
 	UserDetails loadUserByUsername(String email);
-	void addBuddy(BuddyFormDto buddyFormDto);
+	User addBuddy(BuddyFormDto buddyFormDto);
 	List<Relation> listEmailRelation(String username);
 	Boolean deleteBuddy(Integer id);
 }

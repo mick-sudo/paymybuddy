@@ -1,6 +1,7 @@
 package com.mick.paymybuddy.service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@Transactional
-	public void addBuddy(BuddyFormDto buddyFormDto) {
+	public User addBuddy(BuddyFormDto buddyFormDto) {
 		User owner = userDao.findByEmail(buddyFormDto.getOwner());
 		
 		// Si le owner a des relations
@@ -67,8 +68,13 @@ public class UserServiceImpl implements UserService {
 		Relation relation = new Relation();
 		relation.setOwner(owner);
 		relation.setBuddy(buddy);
+		
+		if(owner.getRelations() == null) {
+			owner.setRelations(new ArrayList<>());
+		}
+		
 		owner.getRelations().add(relation);
-		userDao.save(owner);
+		return userDao.save(owner);
 		
 	}
 
