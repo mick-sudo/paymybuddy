@@ -18,4 +18,4 @@ projet 6 openclassrooms
 -Springsecurity
 
 
-[paysql.txt](https://github.com/mick-sudo/paymybuddy/files/7418180/paysql.txt)
+-[paysql.txt](https://github.com/mick-sudo/paymybuddy/files/7418180/paysql.txt)
